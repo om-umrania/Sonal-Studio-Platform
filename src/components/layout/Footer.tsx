@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { WA } from "@/lib/whatsapp";
 import { SITE } from "@/data/site";
 
@@ -12,9 +13,15 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
           {/* Brand column */}
           <div>
-            <h2 className="font-display text-2xl text-cream tracking-wide mb-3">
-              Sonal Studio
-            </h2>
+            <div className="mb-4">
+              <Image
+                src="/logos/sonal-horizontal-ivory-wine.png"
+                alt="Sonal Studio Logo"
+                width={160}
+                height={36}
+                className="h-9 w-auto object-contain"
+              />
+            </div>
             <p className="text-sm text-cream/60 font-[var(--font-editorial)] italic mb-1">
               {SITE.tagline}
             </p>

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { WA } from "@/lib/whatsapp";
@@ -51,12 +52,33 @@ export default function Navbar() {
             {/* Logo */}
             <Link
               href="/"
-              className={`font-display text-xl md:text-2xl tracking-wide leading-none transition-colors duration-300 ${
-                useLightText ? "text-cream hover:text-gold-soft" : "text-maroon"
-              }`}
+              className="relative h-8 md:h-10 w-36 md:w-44 block"
               aria-label="Sonal Studio — Home"
             >
-              Sonal Studio
+              <div className={`absolute inset-0 transition-opacity duration-300 ${
+                useLightText ? "opacity-100" : "opacity-0 pointer-events-none"
+              }`}>
+                <Image
+                  src="/logos/sonal-horizontal-ivory-wine.png"
+                  alt="Sonal Studio Logo"
+                  fill
+                  priority
+                  className="object-contain object-left"
+                  sizes="(max-width: 768px) 144px, 176px"
+                />
+              </div>
+              <div className={`absolute inset-0 transition-opacity duration-300 ${
+                useLightText ? "opacity-0 pointer-events-none" : "opacity-100"
+              }`}>
+                <Image
+                  src="/logos/sonal-horizontal-wine.png"
+                  alt="Sonal Studio Logo"
+                  fill
+                  priority
+                  className="object-contain object-left"
+                  sizes="(max-width: 768px) 144px, 176px"
+                />
+              </div>
             </Link>
 
             {/* Desktop nav */}
@@ -155,7 +177,13 @@ export default function Navbar() {
             >
               {/* Header */}
               <div className="flex items-center justify-between px-6 pt-6 pb-4 border-b border-gold/20">
-                <span className="font-display text-xl text-maroon">Sonal Studio</span>
+                <Image
+                  src="/logos/sonal-horizontal-wine.png"
+                  alt="Sonal Studio Logo"
+                  width={120}
+                  height={28}
+                  className="h-7 w-auto object-contain"
+                />
                 <button
                   onClick={() => setMenuOpen(false)}
                   className="w-8 h-8 flex items-center justify-center text-muted hover:text-maroon transition-colors"
