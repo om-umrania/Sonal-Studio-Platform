@@ -52,11 +52,22 @@ export async function POST(request: NextRequest) {
     const baseName = path.basename(filename, ext).replace(/\s+/g, '_');
     fs.mkdirSync(TEMP_DIR, { recursive: true });
 
-    // Save edited mask from base64 data URL
-    const maskBase64 = maskDataUrl.replace(/^data:image\/\w+;base64,/, '');
-    const maskBuffer = Buffer.from(maskBase64, 'base64');
+    // Save edited mask from base64 data URL or copy original mask if unchanged
     const editedMaskPath = path.join(TEMP_DIR, `${baseName}_mask_edited.png`);
-    fs.writeFileSync(editedMaskPath, maskBuffer);
+    if (maskDataUrl.startsWith('data:image/')) {
+      const maskBase64 = maskDataUrl.replace(/^data:image\/\w+;base64,/, '');
+      const maskBuffer = Buffer.from(maskBase64, 'base64');
+      fs.writeFileSync(editedMaskPath, maskBuffer);
+    } else {
+      const cleanUrl = maskDataUrl.split('?')[0];
+      const cleanPath = cleanUrl.startsWith('/') ? cleanUrl.substring(1) : cleanUrl;
+      const sourceMaskPath = path.join(process.cwd(), 'public', cleanPath);
+      if (fs.existsSync(sourceMaskPath)) {
+        fs.copyFileSync(sourceMaskPath, editedMaskPath);
+      } else {
+        return NextResponse.json({ error: `Mask file not found at ${sourceMaskPath}` }, { status: 404 });
+      }
+    }
 
     // Prepare output path
     const generationId = `${Date.now()}_${Math.floor(Math.random() * 1000)}`;
