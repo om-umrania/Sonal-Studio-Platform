@@ -44,6 +44,7 @@ export default function Footer() {
                 { label: "Wedding Essentials", href: "/services#wedding-ritual-essentials" },
                 { label: "Gallery", href: "/gallery" },
                 { label: "About Sonal", href: "/about" },
+                { label: "Return Policy", href: "/return-policy" },
               ].map((link) => (
                 <li key={link.href}>
                   <Link
