@@ -52,33 +52,18 @@ export default function Navbar() {
             {/* Logo */}
             <Link
               href="/"
-              className="relative h-8 md:h-10 w-36 md:w-44 block"
+              className="relative h-11 md:h-14 w-40 md:w-48 block"
               aria-label="Sonal Studio — Home"
             >
-              <div className={`absolute inset-0 transition-opacity duration-300 ${
-                useLightText ? "opacity-100" : "opacity-0 pointer-events-none"
-              }`}>
-                <Image
-                  src="/logos/sonal-horizontal-ivory-wine.png"
-                  alt="Sonal Studio Logo"
-                  fill
-                  priority
-                  className="object-contain object-left"
-                  sizes="(max-width: 768px) 144px, 176px"
-                />
-              </div>
-              <div className={`absolute inset-0 transition-opacity duration-300 ${
-                useLightText ? "opacity-0 pointer-events-none" : "opacity-100"
-              }`}>
-                <Image
-                  src="/logos/sonal-horizontal-wine.png"
-                  alt="Sonal Studio Logo"
-                  fill
-                  priority
-                  className="object-contain object-left"
-                  sizes="(max-width: 768px) 144px, 176px"
-                />
-              </div>
+              <Image
+                src="/logos/sonal-horizontal-wine.png"
+                alt="Sonal Studio Logo"
+                fill
+                priority
+                className="object-contain object-left transition-all duration-300"
+                style={{ filter: useLightText ? "brightness(0) invert(1)" : "none" }}
+                sizes="(max-width: 768px) 160px, 192px"
+              />
             </Link>
 
             {/* Desktop nav */}

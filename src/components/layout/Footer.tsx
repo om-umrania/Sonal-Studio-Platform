@@ -15,11 +15,12 @@ export default function Footer() {
           <div>
             <div className="mb-4">
               <Image
-                src="/logos/sonal-horizontal-ivory-wine.png"
+                src="/logos/sonal-horizontal-wine.png"
                 alt="Sonal Studio Logo"
                 width={160}
-                height={36}
-                className="h-9 w-auto object-contain"
+                height={48}
+                className="h-10 w-auto object-contain"
+                style={{ filter: "brightness(0) invert(1)" }}
               />
             </div>
             <p className="text-sm text-cream/60 font-[var(--font-editorial)] italic mb-1">
