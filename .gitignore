@@ -43,3 +43,11 @@ next-env.d.ts
 # resources
 /Sonal Studio Platform Resources/
 
+# tmp and temporary images
+/tmp/
+/public/images/temp/
+
+# Python pycache
+__pycache__/
+*.pyc
+

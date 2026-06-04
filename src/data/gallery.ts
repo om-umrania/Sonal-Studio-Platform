@@ -19,8 +19,7 @@ export type GalleryItem = {
   occasion: string[];
   description: string;
   image: string;
-  // alternateImages will be added in Phase 5 when photos are categorised
-  // alternateImages?: string[];
+  alternateImages?: string[];
   tags: string[];
   whatsappMessage: string;
 };
