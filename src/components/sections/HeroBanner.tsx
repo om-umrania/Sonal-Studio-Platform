@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
 import { WA } from "@/lib/whatsapp";
 import Link from "next/link";
@@ -32,6 +32,9 @@ const HERO_IMAGES = [
 
 export default function HeroBanner() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { scrollY } = useScroll();
+  // Map scrollY to a subtle negative translate value for the parallax effect
+  const y = useTransform(scrollY, [0, 800], [0, -80]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -53,7 +56,7 @@ export default function HeroBanner() {
       className="relative min-h-screen flex items-end overflow-hidden"
       aria-label="Hero"
     >
-      {/* Background images with crossfade and Ken Burns effect */}
+      {/* Background images with crossfade and Ken Burns effect + Parallax scroll */}
       <div className="absolute inset-0 overflow-hidden bg-[var(--color-wine)]">
         <AnimatePresence initial={false}>
           <motion.div
@@ -62,7 +65,8 @@ export default function HeroBanner() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 1.2, ease: "easeInOut" }}
-            className="absolute inset-0"
+            className="absolute inset-0 -bottom-20"
+            style={{ y }}
           >
             <motion.div
               initial={{ scale: 1.08 }}
@@ -81,8 +85,9 @@ export default function HeroBanner() {
             </motion.div>
           </motion.div>
         </AnimatePresence>
-        {/* Gradient overlay — bottom heavy for text legibility */}
-        <div className="absolute inset-0 z-10 bg-gradient-to-t from-[var(--color-wine)]/90 via-[var(--color-wine)]/45 to-[var(--color-wine)]/15 pointer-events-none" />
+        {/* Double gradient overlay — top heavy for navbar legibility, bottom heavy for text legibility */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-b from-[var(--color-wine)]/50 via-transparent to-transparent pointer-events-none" />
+        <div className="absolute inset-0 z-10 bg-gradient-to-t from-[var(--color-wine)]/95 via-[var(--color-wine)]/45 to-transparent pointer-events-none" />
       </div>
 
       {/* Content */}
