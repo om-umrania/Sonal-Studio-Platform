@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+/* ── Brand tokens ───────────────────────────────────────────── */
+@theme {
+  /* Colors */
+  --color-maroon:       #6B1626;
+  --color-wine:         #4A0F1B;
+  --color-gold:         #B8893A;
+  --color-gold-soft:    #D4A85C;
+  --color-ivory:        #F7F0E4;
+  --color-cream:        #FFF9EF;
+  --color-ink:          #2A2118;
+  --color-muted:        #7A6A5A;
+  --color-blush:        #E9C8BE;
+  --color-rani:         #C44560;
+  --color-whatsapp:     #1F7A4D;
+
+  /* Fonts */
+  --font-display:    var(--font-italiana);
+  --font-editorial:  var(--font-cormorant);
+  --font-body:       var(--font-manrope);
+  --font-sans:       var(--font-manrope);
+
+  /* Border radii */
+  --radius-tag:    12px;
+  --radius-btn:    20px;
+  --radius-card:   28px;
+  --radius-hero:   36px;
+  --radius-pill:   999px;
+
+  /* Shadows (maroon-tinted, not harsh black) */
+  --shadow-soft:    0 10px 30px rgba(107, 22, 38, 0.10);
+  --shadow-card:    0 20px 60px rgba(107, 22, 38, 0.14);
+  --shadow-luxury:  0 36px 100px rgba(107, 22, 38, 0.20);
+
+  /* Premium easing */
+  --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ── Base ───────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-ivory);
+  color: var(--color-ink);
+  font-family: var(--font-body), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Reduced motion ─────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Scrollbar (subtle, on-brand) ───────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-ivory); }
+::-webkit-scrollbar-thumb { background: var(--color-gold); border-radius: 999px; }
